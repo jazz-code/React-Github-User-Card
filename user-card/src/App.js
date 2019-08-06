@@ -8,13 +8,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
-      // login: login
+      user: [],
+      followers: []
     };
   }
 
   componentDidMount() {
     this.userData();
+    this.userFollowers();
   }
 
   userData = () => {
@@ -25,17 +26,30 @@ class App extends React.Component {
       .then(res =>
         this.setState({
           user: res,
-          login: res.login
+          login: res.login,
+          avatar: res.avatar_url
+        })
+      );
+  };
+
+  userFollowers = () => {
+    // let data = avatar_url;
+    axios
+      .get(`https://api.github.com/users/divbyseptember/followers`)
+      .then(res => res.data)
+      .then(res =>
+        this.setState({
+          followers: res
         })
       );
   };
 
   render() {
-    console.log("users", this.state.login);
+    console.log("followers", this.state.followers);
     return (
       <div className="App">
         <header className="App-header" />
-        <UserData name={this.state.login} />
+        <UserData name={this.state.login} avatar={this.state.avatar} followers={this.state.followers} />
       </div>
     );
   }
