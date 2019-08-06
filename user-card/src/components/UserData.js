@@ -43,11 +43,16 @@ class UserData extends React.Component {
       //       </a>
       //     </Card.Content>
       //   </Card>
-      <div>
+      <div className="user-container">
         <h1>{this.props.name}</h1>
         <img width="300" src={this.props.avatar} />
+        <h2>Followers</h2>
         {this.props.followers.map(people => {
-          return <p>{people.login}</p>;
+          return (
+            <div className="followers-container">
+              <p>{people.login}</p>
+            </div>
+          );
         })}
       </div>
     );

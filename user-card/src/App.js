@@ -2,7 +2,7 @@ import React from "react";
 import UserData from "./components/UserData.js";
 import axios from "axios";
 
-// import './App.css';
+import "./App.css";
 
 class App extends React.Component {
   constructor() {
@@ -49,7 +49,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header" />
-        <UserData name={this.state.login} avatar={this.state.avatar} followers={this.state.followers} />
+        <UserData
+          name={this.state.login}
+          avatar={this.state.avatar}
+          followers={this.state.followers}
+        />
       </div>
     );
   }
