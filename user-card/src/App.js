@@ -9,13 +9,15 @@ class App extends React.Component {
     super();
     this.state = {
       user: [],
-      followers: []
+      followers: [],
+      users: `jazz-code`
     };
   }
 
   componentDidMount() {
     this.userData();
     this.userFollowers();
+    this.searchUsers();
   }
 
   userData = () => {
@@ -44,8 +46,20 @@ class App extends React.Component {
       );
   };
 
+  searchUsers = () => {
+    // let data = avatar_url;
+    axios
+      .get(`https://api.github.com/users/${this.state.user}`)
+      .then(res => res.data)
+      .then(res =>
+        this.setState({
+          users: res
+        })
+      );
+  };
+
   render() {
-    console.log("followers", this.state.followers);
+    console.log("USERS", this.state.users);
     return (
       <div className="App">
         <header className="App-header" />
